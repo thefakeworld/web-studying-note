@@ -1,8 +1,9 @@
 # FormData对象
-最近写应用经常用到ajax提交post数据，而不用dom表单的默认发送事件处理，后来遇到了向服务器发送文件的问题，我只记得在Dom表单中添加type='file'的input标签，然后用表单的默认发送事件处理传输，那自定义的ajax如何通过post请求发送文件呢，于是我查阅资料，找到了HTML5标准的FormData对象。
+最近写应用经常用到ajax提交post数据，而不用dom表单的默认发送事件处理，后来遇到了向服务器发送文件的问题，我只记得在Dom表单中添加type='file'的input标签，然后用表单的默认发送事件处理传输，那自定义的ajax如何通过post请求发送文件呢，于是我查阅资料，找到了FormData对象。
 
 ## 1.什么是FormData对象。
-他是对表单数据内容的一个封装，里面包含了要发送给服务器的表单内容。
+FormData类型是在XMLHttpReqest Level 2 背景下诞生的，原本ajax实现依赖的XMLHttpRequest只含有DomString和Document两种数据类型，前者为数据返回属性中的responseText，等同于常规字符串。后者为数据返回属性的responseXML，可以被解析为XML。
+FormData对象是对表单数据内容的一个封装，将表单以键值对的形式来模拟，里面包含了要发送给服务器的表单内容。
 
 ## 2.如何创建表单对象？
 一般有两种方法：
@@ -26,8 +27,10 @@ var data = new FormData();
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.open(url, 'post', false);
 xmlhttp.send(data);
-xmlhttp.onstatechange = function(data) {
-	//处理响应
+xmlhttp.onload = function(e) {
+	if (xmlhttp.status == 200 && xmlhttp.responseText) {
+		//处理响应
+	}
 }
 ```
 

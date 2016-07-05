@@ -1,4 +1,5 @@
-# css的元素居中是一个老生常谈的问题，下面我来总结下学习以来知道的几种实现方式:
+# css居中 
+css的元素居中是一个老生常谈的问题，下面我来总结下学习以来知道的几种实现方式:
 
 HTML:
 ```
@@ -39,7 +40,7 @@ CSS:
 CSS:
 ```
 .parent: {
-	position: absolute;
+	position: relative;
 }
 
 .item {
